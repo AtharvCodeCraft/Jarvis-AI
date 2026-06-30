@@ -1,0 +1,9 @@
+{
+  "name": "jarvis-backend",
+  "version": "1.0.0",
+  "description": "Jarvis Python FastAPI Backend",
+  "scripts": {
+    "dev": "venv\\Scripts\\python -m uvicorn app.main:app --reload --port 8080",
+    "start": "venv\\Scripts\\python -m uvicorn app.main:app --port 8080"
+  }
+}

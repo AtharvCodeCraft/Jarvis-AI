@@ -33,9 +33,16 @@ export function useJarvisSocket(url) {
     let mounted = true;
 
     const getWebSocketUrl = () => {
-      if (url && url.trim().length > 0) return url;
-      const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
-      return `${protocol}://${window.location.hostname}:8080/ws`;
+      let wsUrl = url;
+      if (!wsUrl || wsUrl.trim().length === 0) {
+        const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+        wsUrl = `${protocol}://${window.location.hostname}:8080/ws`;
+      }
+      const token = localStorage.getItem('token');
+      if (token) {
+        wsUrl += `?token=${token}`;
+      }
+      return wsUrl;
     };
 
     const connect = () => {
